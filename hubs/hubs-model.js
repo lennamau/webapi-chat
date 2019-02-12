@@ -14,8 +14,9 @@ module.exports = {
 };
 
 function find(query) {
-  const { page = 1, limit = 2, sortby = 'id', sortdir = 'asc' } = query;
+  let { page = 1, limit = 5, sortby = 'id', sortdir = 'asc' } = query;
   const offset = limit * (page - 1);
+  limit = Math.min(limit, 10)
 
   let rows = db('hubs')
     .orderBy(sortby, sortdir)
